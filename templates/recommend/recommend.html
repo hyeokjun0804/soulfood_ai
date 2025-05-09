@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie & Customer Recommendations</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'recommend/css/recommend.css' %}">
+</head>
+<body>
+
+    <!-- Include the Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Main Content (Top-rated movies and customer recommendations) -->
+    <div class="content">
+
+        <!-- Section 1: Top Rated Restaurants -->
+        <div class="section">
+            <h1>최고 평점 식당</h1>
+            <button class="scroll-button left" id="scroll-left">&#10094;</button>
+            <button class="scroll-button right" id="scroll-right">&#10095;</button>
+            <div class="restaurant-container" id="restaurant-list">
+                <!-- AJAX로 로드할 영화 데이터 -->
+                <p>인기 있는 식당을 불러오는 중입니다...</p>
+            </div>
+        </div>
+                <!-- Section 2: Customer Recommendations -->
+        <div class="section">
+            <h1>{{ user.username }}님에게 추천하는 식당</h1>
+
+            <a href="javascript:void(0);" onclick="loadCustomers()" class="button-style">SVD Model</a>
+            <a href="javascript:void(0);" onclick="loadCustomersNMF()" class="button-style">NMF Model</a>
+            <a href="javascript:void(0);" onclick="loadCustomersNMF()" class="button-style">MF Model</a>
+
+            <button class="scroll-button left" id="scroll-left-customers">&#10094;</button>
+            <button class="scroll-button right" id="scroll-right-customers">&#10095;</button>
+            <div class="customer-container" id="customer-list">
+                <!-- AJAX로 로드할 고객 데이터 -->
+                <p>식당 추천 모델을 선택해주세요!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Include jQuery for AJAX functionality -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+         // AJAX로 영화 목록 가져오기
+        function loadRestaurants() {
+            $.ajax({
+                url: "{% url 'recommend:load_restaurants' %}", // Django 뷰로 AJAX 요청
+                method: "GET",
+                success: function(data) {
+                    $('#restaurant-list').html(data.recommend_html); // AJAX로 가져온 HTML을 삽입
+                },
+                error: function(error) {
+                    $('#restaurant-list').html("<p>Error loading restaurants</p>");
+                }
+            });
+        }
+        // AJAX로 고객 추천 목록 가져오기
+        function loadCustomers() {
+            $.ajax({
+                url: "{% url 'recommend:load_customers' model='svd_model' %}", // Django 뷰로 AJAX 요청
+                method: "GET",
+                success: function(data) {
+                    $('#customer-list').html(data.customers_html); // AJAX로 가져온 HTML을 삽입
+                },
+                error: function(error) {
+                    $('#customer-list').html("<p>Error loading recommendations</p>");
+                }
+            });
+        }
+        // AJAX로 고객 추천 목록 가져오기
+        function loadCustomersNMF() {
+            $.ajax({
+                url: "{% url 'recommend:load_customers' model='nmf_model' %}", // Django 뷰로 AJAX 요청
+                method: "GET",
+                success: function(data) {
+                    $('#customer-list').html(data.customers_html); // AJAX로 가져온 HTML을 삽입
+                },
+                error: function(error) {
+                    $('#customer-list').html("<p>Error loading recommendations</p>");
+                }
+            });
+        }
+        // AJAX로 고객 추천 목록 가져오기
+        function loadCustomersMF() {
+            $.ajax({
+                url: "{% url 'recommend:load_customers' model='mf_model' %}", // Django 뷰로 AJAX 요청
+                method: "GET",
+                success: function(data) {
+                    $('#customer-list').html(data.customers_html); // AJAX로 가져온 HTML을 삽입
+                },
+                error: function(error) {
+                    $('#customer-list').html("<p>Error loading recommendations</p>");
+                }
+            });
+        }
+
+      // 페이지 로드 시 AJAX로 데이터 로드
+        $(document).ready(function() {
+            loadRestaurants();
+        });
+
+        // JavaScript for scrolling functionality
+        function scrollLeft() {
+            document.getElementById('restaurant-list').scrollBy({
+                left: -300, // Scrolls left by 300px
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollRight() {
+            document.getElementById('restaurant-list').scrollBy({
+                left: 300, // Scrolls right by 300px
+                behavior: 'smooth'
+            });
+        }
+
+        function recommend_scrollLeft() {
+            document.getElementById('customer-list').scrollBy({
+                left: -300, // Scrolls left by 300px
+                behavior: 'smooth'
+            });
+        }
+
+        function recommend_scrollRight() {
+            document.getElementById('customer-list').scrollBy({
+                left: 300, // Scrolls right by 300px
+                behavior: 'smooth'
+            });
+        }
+
+        // Attach event listeners to scroll buttons
+        document.getElementById('scroll-left').addEventListener('click', scrollLeft);
+        document.getElementById('scroll-right').addEventListener('click', scrollRight);
+        document.getElementById('scroll-left-customers').addEventListener('click', recommend_scrollLeft);
+        document.getElementById('scroll-right-customers').addEventListener('click', recommend_scrollRight);
+    </script>
+</body>
+</html>

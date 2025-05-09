@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>식당 추천 챗봇</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'chatbot/css/chatbot.css' %}">
+</head>
+<body>
+
+<!-- Include the Navbar -->
+{% include 'navbar.html' %}
+
+<div class="chatbot-container">
+    <h1>식당 추천 챗봇</h1>
+
+    <!-- Chatbox Area -->
+    <div class="chatbox">
+        <div class="messages">
+            <!-- 안내 메시지 -->
+            {% if not search_query %}
+                <div class="bot-message">
+                    <p><strong>챗봇:</strong> 찾는 식당을 물어보세요! (예: 서울 맛집 추천해주세요.)</p>
+                </div>
+            {% endif %}
+
+            {% if search_query %}
+                <div class="user-message">
+                    <p><strong>나:</strong> {{ search_query }}</p>
+                </div>
+                {% if recommended_restaurants %}
+                    <div class="bot-message">
+                        <p><strong>챗봇:</strong> 추천된 식당:
+                            <a href="{% url 'restaurant:restaurant_detail' restaurant_id=recommended_restaurants.id %}">
+                                {{ recommended_restaurants.restaurant_name }}
+                            </a>
+                        </p>
+                        <p>{{ recommended_restaurants.jibun_address }} - {{ recommended_restaurants.category.name }}</p>
+                    </div>
+                {% else %}
+                    <div class="bot-message">
+                        <p><strong>챗봇:</strong> {{ message }}</p>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <!-- Input Area -->
+        <form method="POST" class="chat-input">
+            {% csrf_token %}
+            <input type="text" id="chatting" name="chatting" placeholder="식당 추천을 물어보세요">
+            <button type="submit">질문하기</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

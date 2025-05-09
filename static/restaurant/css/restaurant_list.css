@@ -1,0 +1,217 @@
+/* Search Form */
+form {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+form h2 {
+    padding: 20px;
+}
+form input[type="text"] {
+    width: 40%;
+    padding: 12px;
+    font-size: 1em;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+form button {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #007bff, #0056b3); /* 그라데이션 색상 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Filter Container */
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Filter Category */
+.filter-category {
+    width: 40%;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.filter-category h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Category Links */
+.category-list, .region-list {
+    display: grid; /* 그리드 레이아웃을 사용하여 항목을 정렬 */
+    grid-template-columns: repeat(3, 1fr);  /* 4개의 동일한 너비 컬럼을 생성 */
+    gap: 10px;  /* 그리드 항목 사이의 간격을 10px로 설정 */
+    width: 100%;  /* 그리드가 부모 요소의 전체 너비를 차지하도록 설정 */
+}
+
+/* 개별 항목 스타일 (링크) */
+.category-list a, .region-list a {
+    padding: 8px 0;  /* 위/아래 패딩을 8px로 설정 */
+    font-size: 1em;  /* 글꼴 크기를 기본 크기로 설정 */
+    color: #333;  /* 글꼴 색을 짙은 회색으로 설정 */
+    font-weight: 500;  /* 글꼴 두께를 500으로 설정 */
+    text-align: center;  /* 텍스트를 중앙 정렬 */
+    background-color: #fff;  /* 배경색을 흰색으로 설정 */
+    border-radius: 4px;  /* 테두리 모서리를 둥글게 설정 */
+    transition: 0.3s ease;  /* 호버 시 부드러운 전환 효과 */
+    text-decoration: none;  /* 기본 텍스트 장식(밑줄)을 없앰 */
+}
+
+/* Hover 효과 (마우스를 올렸을 때) */
+.category-list a:hover, .region-list a:hover {
+    background-color: #f8f8f8;  /* 배경색을 조금 더 밝게 설정 */
+    color: #3498db;  /* 글꼴 색을 파란색으로 변경 */
+    transform: translateX(5px);  /* 링크를 오른쪽으로 5px 이동 */
+}
+
+/* Active Link Style */
+.category-list a.active, .region-list a.active {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* 그라데이션 색상 */
+    color: #fff;  /* 텍스트 색을 흰색으로 변경 */
+    font-weight: 600;  /* 텍스트 두께를 굵게 */
+    transform: translateX(0);  /* 호버 시 이동 효과를 없앰 */
+}
+
+/* Optional: Ensure active state is highlighted even when hovered */
+.category-list a.active:hover, .region-list a.active:hover {
+    background-color: #2980b9;  /* 호버 시 배경색을 더 어두운 파란색으로 */
+}
+
+
+/* Table */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove underline from restaurant name links */
+table a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Ensure the text color matches the surrounding text */
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+table th {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* 그라데이션 색상 */
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+    transition: background-color 0.2s ease;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pagination a {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background: linear-gradient(135deg, #007bff, #0056b3); /* 그라데이션 색상 */
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination a:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.pagination .current {
+    padding: 12px 25px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    color: #3498db;
+}
+
+.pagination .step-links {
+    margin: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filter-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-category {
+        width: 48%;
+    }
+
+    .category-list a, .region-list a {
+        width: 100%;
+    }
+
+    form input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .pagination a {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.filter-container, table th, table td {
+    animation: fadeIn 1s ease-in-out;
+}

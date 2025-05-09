@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+<!-- Include the Navbar -->
+{% include 'navbar.html' %}
+
+<div class="container">
+    <div class="head">
+        <div class="title">
+            <img src="{% static 'img/SoulFood_logo.png' %}" alt="Soul Food Logo">
+        </div>
+        <div class="title">안녕하세요, 소울푸드 입니다.
+            <br/>어떤 맛집을 찾으시나요?
+            <form method="get" action="{% url 'restaurant:restaurant_view' %}">
+                <input type="text" name="q" placeholder="찾으시는 식당을 검색해보세요." value="{{ query|default:'' }}">
+                <button type="submit">검색</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

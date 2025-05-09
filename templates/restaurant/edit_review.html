@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 수정</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'restaurant/css/edit_review.css' %}">
+</head>
+<body>
+<h1>리뷰 수정하기</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">저장</button>
+</form>
+<a href="{% url 'restaurant:restaurant_detail' review.restaurant.id %}">취소</a>
+</body>
+</html>

@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar styling */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff; /* Background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 10px 20px; /* Padding around the content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem; /* Font size for the text */
+    font-weight: 600; /* Font weight for bold text */
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height:100px;
+    position: relative;
+}
+
+.navbar-left, .navbar-right {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    gap: 1rem; /* Space between items */
+}
+
+.navbar-nav, .navbar-links {
+    list-style-type: none; /* Remove default list styling */
+    display: flex; /* Use flexbox for layout */
+    gap: 1rem; /* Space between nav items */
+}
+
+.navbar-nav a, .navbar-links a {
+    color: #333;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+}
+
+.navbar-nav a:hover, .navbar-links a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.navbar-brand {
+    position: absolute; /* Position the brand image absolutely */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust for its own width */
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+.brand-img {
+    height: 100px;
+    width: auto;
+}
+
+/* User info styling */
+.navbar-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+}
+
+.navbar-profile-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.navbar-user {
+    color: #333;
+    font-weight: bold;
+}
+
+.navbar-link {
+    color: black;
+    text-decoration: none;
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center; /* Center links vertically */
+}
+
+.navbar-link:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* 챗봇 버튼 스타일 */
+.chatbot-btn {
+    position: fixed; /* 화면에 고정 */
+    bottom: 50px; /* 아래에서부터 거리 */
+    right: 50px; /* 오른쪽에서부터 거리 */
+    width: 60px; /* 버튼 너비 */
+    height: 60px; /* 버튼 높이 */
+    background: linear-gradient(135deg, #007bff, #0056b3); /* 그라데이션 색상 */
+    border-radius: 50%; /* 버튼을 원형으로 만듦 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 그림자 효과로 깊이감 추가 */
+    color: white; /* 텍스트 색상 */
+    font-size: 30px; /* 아이콘 크기 */
+    text-decoration: none; /* 밑줄 제거 */
+    display: flex; /* 중앙 정렬을 위한 플렉스박스 사용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    transition: transform 0.3s, background 0.3s; /* 부드러운 전환 효과 */
+    padding: 0;
+    box-sizing: border-box; /* 패딩과 테두리를 크기에 포함 */
+}
+/* 버튼 호버 효과 */
+.chatbot-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #004080); /* 호버 시 더 어두운 그라데이션 */
+    transform: scale(1.1); /* 버튼 크기를 약간 확대 */
+}
+
+/* 아이콘 추가 */
+.chatbot-btn::before {
+    content: '💬'; /* 아이콘을 이모지로 추가 */
+}
+
+
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column; /* 세로로 배치 */
+        align-items: center; /* 세로 중앙 정렬 */
+        gap: 20px; /* 요소 간 간격 */
+        padding: 10px 0;
+    }
+
+    .navbar-left, .navbar-right {
+        width: 100%; /* 메뉴가 가로로 꽉 차도록 */
+        justify-content: center; /* 중앙 정렬 */
+    }
+
+    /* 로고를 고정하고 메뉴 항목들이 로고 아래로 내려가도록 설정 */
+    .navbar-brand {
+        position: static; /* 로고 위치를 흐름에 맞게 변경 */
+        transform: none;
+    }
+
+    .navbar-nav {
+        flex-direction: column; /* 메뉴 항목들을 세로로 나열 */
+        gap: 1rem;
+        align-items: center; /* 중앙 정렬 */
+    }
+
+    .navbar-links {
+        flex-direction: column; /* 로그인/회원가입 버튼 세로로 배치 */
+    }
+}

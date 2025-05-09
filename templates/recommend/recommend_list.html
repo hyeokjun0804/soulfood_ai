@@ -1,0 +1,15 @@
+{% for restaurant in restaurants %}
+    <div class="restaurant-item">
+        <h2>
+            <a href="{% url 'restaurant:restaurant_detail' restaurant.id %}">
+                {{ restaurant.restaurant_name }}
+            </a>
+        </h2>
+        <p>음식 종류: {{ restaurant.category }}</p>
+        {% if restaurant.restaurant_image %}
+            <img src="{{ restaurant.restaurant_image.url }}" alt="{{ restaurant.restaurant_name }} thumbnail">
+        {% else %}
+            <img src="/static/img/unnamed.jpg" alt="{{ restaurant.restaurant_name }} thumbnail">
+        {% endif %}
+    </div>
+{% endfor %}

@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.content {
+    position: relative;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 50px auto; /* Center the content and add margin from the top */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.restaurant-container, .customer-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.restaurant-item, .customer-item {
+    flex: 0 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* hover 애니메이션 추가 */
+    z-index: 1; /* z-index 추가 */
+}
+
+.restaurant-item img, .customer-item img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* hover 효과 추가 */
+.restaurant-item:hover, .customer-item:hover {
+    transform: translateY(-10px); /* 마우스 올렸을 때 위로 약간 이동 */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 크기 확대 */
+    z-index: 10; /* hover 시 z-index 상향 */
+}
+
+/* 텍스트 간 여백 */
+.customer-item h2 {
+    margin-bottom: 10px;
+}
+
+.customer-item p {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.scroll-button.left {
+    left: 10px;
+}
+
+.scroll-button.right {
+    right: 10px;
+}
+
+.scroll-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.section {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.button-style {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(135deg, #007bff, #0056b3); /* 그라데이션 색상 */
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.button-style:hover {
+    background-color: #2980b9;
+}

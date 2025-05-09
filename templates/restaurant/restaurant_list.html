@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>지역별 식당</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'restaurant/css/restaurant_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+    <!-- Navbar Inclusion -->
+    {% include 'navbar.html' %}
+
+    <!-- Search Form -->
+    <form method="get" action="{% url 'restaurant:restaurant_view' %}">
+        <h2>식당 검색</h2>
+        <input type="text" name="q" placeholder="찾으시는 식당을 검색해보세요." value="{{ query|default:'' }}">
+        <button type="submit">검색</button>
+    </form>
+
+    <!-- Filter Container -->
+    <div class="filter-container">
+        <!-- Category Filter -->
+        <div class="filter-category">
+            <h2>음식 종류</h2>
+            <div class="category-list">
+                <a href="?category=All{% if query %}&q={{ query }}{% endif %}{% if region_filter %}&region={{ region_filter }}{% endif %}"
+                   class="{% if category_filter == 'All' %}active{% endif %}">전체</a>
+                {% for category in categories %}
+                    <a href="?category={{ category }}{% if query %}&q={{ query }}{% endif %}{% if region_filter %}&region={{ region_filter }}{% endif %}"
+                       class="{% if category_filter == category %}active{% endif %}">{{ category }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Region Filter -->
+        <div class="filter-category">
+            <h2>지역</h2>
+            <div class="region-list">
+                <a href="?region=All{% if query %}&q={{ query }}{% endif %}{% if category_filter %}&category={{ category_filter }}{% endif %}"
+                   class="{% if region_filter == 'All' %}active{% endif %}">전체</a>
+                {% for region in regions %}
+                    <a href="?region={{ region }}{% if query %}&q={{ query }}{% endif %}{% if category_filter %}&category={{ category_filter }}{% endif %}"
+                       class="{% if region_filter == region %}active{% endif %}">{{ region }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Restaurant Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>식당명</th>
+                <th>카테고리</th>
+                <th>도로명주소</th>
+                <th>지번주소</th>
+                <th>전화번호</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for restaurant in page_obj %}
+                <tr>
+                    <td><a href="{% url 'restaurant:restaurant_detail' restaurant.id %}">{{ restaurant.restaurant_name }}</a></td>
+                    <td><a href="{% url 'restaurant:restaurant_detail' restaurant.id %}">{{ restaurant.category.name }}</a></td>
+                    <td><a href="{% url 'restaurant:restaurant_detail' restaurant.id %}">{{ restaurant.road_address }}</a></td>
+                    <td><a href="{% url 'restaurant:restaurant_detail' restaurant.id %}">{{ restaurant.jibun_address }}</a></td>
+                    <td><a href="{% url 'restaurant:restaurant_detail' restaurant.id %}">{{ restaurant.phone_number }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1{% if query %}&q={{ query }}{% endif %}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if region_filter %}&region={{ region_filter }}{% endif %}">처음</a>
+                <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if region_filter %}&region={{ region_filter }}{% endif %}">이전</a>
+            {% endif %}
+            <span class="current">페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if region_filter %}&region={{ region_filter }}{% endif %}">다음</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if region_filter %}&region={{ region_filter }}{% endif %}">마지막</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

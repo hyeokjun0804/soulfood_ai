@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}"> <!-- Include your CSS file -->
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-left">
+            <ul class="navbar-nav">
+                <li><a href="{% url 'restaurant:restaurant_view' %}">식당 찾기</a></li>
+                <li><a href="{% url 'recommend:recommend_view' %}">식당 추천</a></li>
+            </ul>
+        </div>
+        <a class="navbar-brand" href="{% url 'main' %}">
+            <img src="{% static 'img/SF.png' %}" class="brand-img" alt="SF Logo">
+        </a>
+        <div class="navbar-right">
+            <ul class="navbar-nav">
+                <li><a href="{% url 'chatbot:chatbot_view' %}" class="chatbot-btn" aria-label="ChatBot"></a></li>
+            </ul>
+            <div class="navbar-links">
+                {% if user.is_authenticated %}
+                <div class="navbar-user-info">
+                    {% if user.profile_image %}
+                    <img src="{{ user.profile_image.url }}" alt="{{ user.username }}'s profile image"
+                         class="navbar-profile-image">
+                    {% else %}
+                    <img src="{% static 'account/img/default_profile.png' %}" alt="Default profile image"
+                         class="navbar-profile-image">
+                    {% endif %}
+                    <span class="navbar-user">Hello, {{ user.username }}!</span>
+                </div>
+                <a href="{% url 'account:logout' %}" class="navbar-link">Logout</a>
+                {% else %}
+                <a href="{% url 'account:login' %}" class="navbar-link">Login</a>
+                <a href="{% url 'account:signup' %}" class="navbar-link">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

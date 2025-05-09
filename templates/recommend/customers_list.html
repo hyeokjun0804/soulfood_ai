@@ -1,0 +1,15 @@
+{% for customer in customers %}
+    <div class="customer-item">
+        <h2>
+            <a href="{% url 'restaurant:restaurant_detail' customer.id %}">
+                {{ customer.restaurant_name }}
+            </a>
+        </h2>
+        <p>음식 종류: {{ customer.category }}</p>
+        {% if customer.restaurant_image %}
+            <img src="{{ customer.restaurant_image.url }}" alt="{{ customer.restaurant_name }} thumbnail">
+        {% else %}
+            <img src="/static/img/unnamed.jpg" alt="{{ customer.restaurant_name }} thumbnail">
+        {% endif %}
+    </div>
+{% endfor %}

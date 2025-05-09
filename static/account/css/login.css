@@ -1,0 +1,85 @@
+/* 전체 페이지 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* 로그인 폼 컨테이너 */
+.container {
+    background-color: white;
+    padding: 40px; /* 패딩을 40px로 확대 */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* 최대 너비를 500px로 확대 */
+    margin: 20px auto; /* Center the container */
+}
+
+/* 제목 스타일 */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* 폼 스타일 */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 입력 필드 스타일 */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px; /* 패딩을 12px로 확대 */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* 버튼 스타일 */
+button[type="submit"] {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* 그라데이션 색상 */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* 링크 스타일링 */
+.switch-auth {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.switch-auth a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.switch-auth a:hover {
+    text-decoration: underline;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+    }
+}
